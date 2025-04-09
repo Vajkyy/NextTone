@@ -1,17 +1,16 @@
 import Product from "./Product.js";
 
 export default class ProductList {
-    #product=[]
-    constructor(products, prodParent) {
-        this.products = products;
-        this.prodParent = prodParent;
-        this.view();
-    }
+  constructor(productList, parent) {
+    this.productList = productList;
+    this.parent = parent;
 
-    view() {
-        this.prodParent.innerHTML = "";
-        this.products.forEach((product, index) => {
-            new Product(this.prodParent, product, index);
-        });
-    }
+    this.renderProducts();
+  }
+
+  renderProducts() {
+    this.productList.forEach((product, index) => {
+      new Product(this.parent, product, index);
+    });
+  }
 }
