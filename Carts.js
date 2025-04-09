@@ -4,11 +4,11 @@ export default class Carts {
     constructor(cartsParent) {
         this.cartsParent = cartsParent;
         this.cartItems = [];
-        this.render();
+        this.view();
         this.addEvent();
     }
 
-    render() {
+    view() {
         this.cartsParent.innerHTML = "<h2>Kosár</h2>";
         this.cartItems.forEach(item => {
             new Cart(this.cartsParent, item);

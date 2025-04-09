@@ -2,10 +2,10 @@ export default class Cart {
     constructor(cartParent, item) {
         this.cartParent = cartParent;
         this.cartItem = item;
-        this.render();
+        this.view();
     }
 
-    render() {
+    view() {
         this.cartParent.insertAdjacentHTML("beforeend", `
             <div class="cart-item">
                 <h4>${this.cartItem.name}</h4>
