@@ -9,7 +9,7 @@ export default class Cart {
     this.#cartParent = cartParent;
 
     this.view();
-    this.addEvent();
+    this.addRemoveEvent();
   }
 
   view() {
@@ -27,10 +27,9 @@ export default class Cart {
     }
   }
 
-  addEvent() {
+  addRemoveEvent() {
     window.addEventListener("remove", (event) => {
       const indexToRemove = event.detail;
-      console.log("Törlés index:", indexToRemove);
       this.#cartItems.splice(indexToRemove, 1);
       this.view();
     });
