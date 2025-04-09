@@ -8,6 +8,10 @@ Kovács Tímea,
 Halász Dominika
 
 Első uml terv:
+
 <img width="600" alt="webaruhaz_uml1" src="https://github.com/user-attachments/assets/d4a0ce77-3b41-4a9c-8b7d-ce17151f1738" />
+
+
 Végleges:
+
 <img width="667" alt="webaruhaz_uml_vegleges" src="https://github.com/user-attachments/assets/9939459b-c4b4-4dc7-a24c-8e43b8935a75" />
