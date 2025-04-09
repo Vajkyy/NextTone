@@ -1,22 +1,31 @@
 export default class Product {
-    constructor(parentElement, product, index) {
-        this.parentElement = parentElement;
-        this.name = product.name;
-        this.price = product.price;
-        this.description = product.description;
-        this.imgUrl = product.imgUrl;
-        this.index = index;
-        this.view();
-    }
+  #data;
 
-    view() {
-        this.parentElement.insertAdjacentHTML("beforeend", `
-            <div class="product">
-                <h3>${this.name}</h3>
-                <p>${this.description}</p>
-                <p><strong>${this.price} Ft</strong></p>
-                <button class="add-to-cart" data-index="${this.index}">Kosárba</button>
-            </div>
-        `);
-    }
+  #index;
+
+  constructor(parentElement, data, index) {
+    this.#data = data;
+    this.#index = index;
+    this.view();
+  }
+
+  view() {
+    const HTML = `<img src="${this.#data.imgUrl}" class="card-img-top"/>
+          <div class="card-body">
+            <h5 class="card-title">${this.#data.name}</h5>
+            <p class="card-text">
+              ${this.#data.description}
+            </p>
+            <p>${this.#data.price}</p>
+            <a href="#" class="btn btn-primary">To Cart</a>
+    
+    `;
+    this.parentElement.insertAdjacentHTML("beforeend", HTML);
+  }
+  addItem() {
+    this.AddElem.addEventListener("click", () => {
+      const e = new CustomEvent("add", { detail: this.#index });
+      window.dispatchEvent(e);
+    });
+  }
 }
