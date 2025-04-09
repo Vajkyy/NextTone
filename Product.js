@@ -1,14 +1,15 @@
 export default class Product {
     #data;
     #index;
-    parentElement;
   
-    constructor(parentElement, data, index) {
+    constructor(parentElement, data, index, cart) {
       this.#data = data;
       this.#index = index;
       this.parentElement = parentElement;
+      this.cart = cart;
+  
       this.view();
-      this.addItem();
+      this.addEvent();
     }
   
     view() {
@@ -26,18 +27,14 @@ export default class Product {
       this.parentElement.insertAdjacentHTML("beforeend", HTML);
     }
   
-    addItem() {
-      // Egy kicsi késleltetésre van szükség, mert az elem még nem létezik a DOM-ban a konstruktor lefutásakor
-      setTimeout(() => {
-        const addBtn = this.parentElement.querySelector(`.add-to-cart[data-index="${this.#index}"]`);
-        if (addBtn) {
-          addBtn.addEventListener("click", (event) => {
-            event.preventDefault(); // Ne ugorjon az oldal tetejére a <a> miatt
-            const customEvent = new CustomEvent("add", { detail: this.#index });
-            window.dispatchEvent(customEvent);
-          });
-        }
-      }, 0);
+    addEvent() {
+      const addBtn = this.parentElement.querySelector(`.add-to-cart[data-index="${this.#index}"]`);
+      if (addBtn) {
+        addBtn.addEventListener("click", (event) => {
+          event.preventDefault();
+          this.cart.addItem(this.#data);
+        });
+      }
     }
   }
   

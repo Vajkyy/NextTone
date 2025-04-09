@@ -1,12 +1,14 @@
-import { myProductList } from "./myProductList.js";
 import ProductList from "./ProductList.js";
 import Cart from "./Cart.js";
+import { myProductList } from "./myProductList.js";
 
-const productSection = document.querySelector("article");
-const cartSection = document.querySelector(".cart");
-const aside = document.querySelector("aside");
+const main = {
+  parentElement: document.querySelector("article"),
+  cartParent: document.querySelector(".cart"),
+};
 
-const cart = new Cart([], cartSection);
+const cart = new Cart([], main.cartParent);
+const productList = new ProductList(myProductList, main.parentElement, cart);
 
 const toggleCartBtn = document.createElement("button");
 toggleCartBtn.textContent = "🛒";
@@ -14,24 +16,14 @@ toggleCartBtn.classList.add("btn", "btn-secondary", "position-fixed", "top-0", "
 document.body.appendChild(toggleCartBtn);
 
 let cartVisible = false;
-aside.style.display = "none";
+document.querySelector("aside").style.display = "none";
 
 toggleCartBtn.addEventListener("click", () => {
   cartVisible = !cartVisible;
-  aside.style.display = cartVisible ? "block" : "none";
+  document.querySelector("aside").style.display = cartVisible ? "block" : "none";
 });
 
-const originalAddItem = cart.addItem.bind(cart);
-cart.addItem = (product) => {
-  originalAddItem(product);
-  aside.style.display = "block";
+cart.onAddItem(() => {
+  document.querySelector("aside").style.display = "block";
   cartVisible = true;
-};
-
-window.addEventListener("add", (event) => {
-  const productIndex = event.detail;
-  const product = myProductList[productIndex];
-  cart.addItem(product);
 });
-
-new ProductList(myProductList, productSection, cart);
