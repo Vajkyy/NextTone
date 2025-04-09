@@ -18,7 +18,7 @@ export default class Product {
           <div class="card-body">
             <h5 class="card-title">${this.#data.name || 'Guitar'}</h5>
             <p class="card-text">${this.#data.description || 'No description available.'}</p>
-            <p class="fw-bold">${this.#data.price} Ft</p>
+            <p class="fw-bold">${this.#data.price}€</p>
             <a href="#" class="btn btn-primary add-to-cart" data-index="${this.#index}">To Cart</a>
           </div>
         </div>
