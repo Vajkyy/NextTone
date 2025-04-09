@@ -1,6 +1,7 @@
 import Product from "./Product.js";
 
 export default class ProductList {
+    #product=[]
     constructor(products, prodParent) {
         this.products = products;
         this.prodParent = prodParent;
