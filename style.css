@@ -11,10 +11,6 @@ aside {
     overflow-y: auto;
 }
 
-main {
-    margin-right: 300px; /* hely az aside-nak */
-}
-
 @media (max-width: 768px) {
     aside {
         width: 100%;
@@ -24,3 +20,65 @@ main {
         margin-right: 0;
     }
 }
+
+body {
+    margin: 0;
+  }
+
+  main {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+  }
+
+  nav {
+    grid-row: 1;
+    grid-column: 1;
+    background-color: #222;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+
+  .content {
+    grid-row: 2;
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  article {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  aside {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-left: 1px solid #ccc;
+    display: none;
+  }
+
+  footer {
+    grid-row: 3;
+    grid-column: 1;
+    background-color: #eee;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .content {
+      grid-template-columns: 1fr;
+    }
+
+    aside {
+      border-left: none;
+      border-top: 1px solid #ccc;
+    }
+  }
