@@ -1,17 +1,31 @@
+import Carts from "./Carts.js";
+
 export default class Cart {
-    constructor(cartParent, item) {
+    #cartItems = [];
+    constructor(cartItems, cartParent) {
+        this.#cartItems = cartItems;
         this.cartParent = cartParent;
-        this.cartItem = item;
         this.view();
+        this.removeItem();
     }
 
     view() {
-        this.cartParent.insertAdjacentHTML("beforeend", `
-            <div class="cart-item">
-                <h4>${this.cartItem.name}</h4>
-                <p>${this.cartItem.price} Ft</p>
-                <button class="remove" data-name="${this.cartItem.name}">Törlés</button>
-            </div>
-        `);
+        this.cartParent.innerHTML = "";
+        this.#cartItems.forEach((item, index) => {
+            new Carts(item, this.cartParent, index);
+        });
+    }
+
+    removeItem() {
+        window.addEventListener("remove", (event) => {
+            console.log("Törlés index:", event.detail);
+            this.#cartItems.splice(event.detail, 1);
+            this.view();
+        });
+    }
+
+    addItem(product) {
+        this.#cartItems.push(product);
+        this.view();
     }
 }
