@@ -6,10 +6,10 @@ export default class Product {
         this.description = product.description;
         this.imgUrl = product.imgUrl;
         this.index = index;
-        this.render();
+        this.view();
     }
 
-    render() {
+    view() {
         this.parentElement.insertAdjacentHTML("beforeend", `
             <div class="product">
                 <h3>${this.name}</h3>
